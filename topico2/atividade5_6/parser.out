@@ -1,0 +1,297 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> math_expression SEMICOL
+Rule 2     math_expression -> math_expression PLUS LPARENT math_expression RPARENT
+Rule 3     math_expression -> math_expression MINUS LPARENT math_expression RPARENT
+Rule 4     math_expression -> math_expression TIMES LPARENT math_expression RPARENT
+Rule 5     math_expression -> math_expression DIVIDE LPARENT math_expression RPARENT
+Rule 6     math_expression -> term
+Rule 7     term -> NUMBER
+
+Terminals, with rules where they appear
+
+DIVIDE               : 5
+LPARENT              : 2 3 4 5
+MINUS                : 3
+NUMBER               : 7
+PLUS                 : 2
+RPARENT              : 2 3 4 5
+SEMICOL              : 1
+TIMES                : 4
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 0
+math_expression      : 1 2 2 3 3 4 4 5 5
+term                 : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . math_expression SEMICOL
+    (2) math_expression -> . math_expression PLUS LPARENT math_expression RPARENT
+    (3) math_expression -> . math_expression MINUS LPARENT math_expression RPARENT
+    (4) math_expression -> . math_expression TIMES LPARENT math_expression RPARENT
+    (5) math_expression -> . math_expression DIVIDE LPARENT math_expression RPARENT
+    (6) math_expression -> . term
+    (7) term -> . NUMBER
+
+    NUMBER          shift and go to state 4
+
+    expression                     shift and go to state 1
+    math_expression                shift and go to state 2
+    term                           shift and go to state 3
+
+state 1
+
+    (0) S' -> expression .
+
+
+
+state 2
+
+    (1) expression -> math_expression . SEMICOL
+    (2) math_expression -> math_expression . PLUS LPARENT math_expression RPARENT
+    (3) math_expression -> math_expression . MINUS LPARENT math_expression RPARENT
+    (4) math_expression -> math_expression . TIMES LPARENT math_expression RPARENT
+    (5) math_expression -> math_expression . DIVIDE LPARENT math_expression RPARENT
+
+    SEMICOL         shift and go to state 5
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    TIMES           shift and go to state 8
+    DIVIDE          shift and go to state 9
+
+
+state 3
+
+    (6) math_expression -> term .
+
+    SEMICOL         reduce using rule 6 (math_expression -> term .)
+    PLUS            reduce using rule 6 (math_expression -> term .)
+    MINUS           reduce using rule 6 (math_expression -> term .)
+    TIMES           reduce using rule 6 (math_expression -> term .)
+    DIVIDE          reduce using rule 6 (math_expression -> term .)
+    RPARENT         reduce using rule 6 (math_expression -> term .)
+
+
+state 4
+
+    (7) term -> NUMBER .
+
+    SEMICOL         reduce using rule 7 (term -> NUMBER .)
+    PLUS            reduce using rule 7 (term -> NUMBER .)
+    MINUS           reduce using rule 7 (term -> NUMBER .)
+    TIMES           reduce using rule 7 (term -> NUMBER .)
+    DIVIDE          reduce using rule 7 (term -> NUMBER .)
+    RPARENT         reduce using rule 7 (term -> NUMBER .)
+
+
+state 5
+
+    (1) expression -> math_expression SEMICOL .
+
+    $end            reduce using rule 1 (expression -> math_expression SEMICOL .)
+
+
+state 6
+
+    (2) math_expression -> math_expression PLUS . LPARENT math_expression RPARENT
+
+    LPARENT         shift and go to state 10
+
+
+state 7
+
+    (3) math_expression -> math_expression MINUS . LPARENT math_expression RPARENT
+
+    LPARENT         shift and go to state 11
+
+
+state 8
+
+    (4) math_expression -> math_expression TIMES . LPARENT math_expression RPARENT
+
+    LPARENT         shift and go to state 12
+
+
+state 9
+
+    (5) math_expression -> math_expression DIVIDE . LPARENT math_expression RPARENT
+
+    LPARENT         shift and go to state 13
+
+
+state 10
+
+    (2) math_expression -> math_expression PLUS LPARENT . math_expression RPARENT
+    (2) math_expression -> . math_expression PLUS LPARENT math_expression RPARENT
+    (3) math_expression -> . math_expression MINUS LPARENT math_expression RPARENT
+    (4) math_expression -> . math_expression TIMES LPARENT math_expression RPARENT
+    (5) math_expression -> . math_expression DIVIDE LPARENT math_expression RPARENT
+    (6) math_expression -> . term
+    (7) term -> . NUMBER
+
+    NUMBER          shift and go to state 4
+
+    math_expression                shift and go to state 14
+    term                           shift and go to state 3
+
+state 11
+
+    (3) math_expression -> math_expression MINUS LPARENT . math_expression RPARENT
+    (2) math_expression -> . math_expression PLUS LPARENT math_expression RPARENT
+    (3) math_expression -> . math_expression MINUS LPARENT math_expression RPARENT
+    (4) math_expression -> . math_expression TIMES LPARENT math_expression RPARENT
+    (5) math_expression -> . math_expression DIVIDE LPARENT math_expression RPARENT
+    (6) math_expression -> . term
+    (7) term -> . NUMBER
+
+    NUMBER          shift and go to state 4
+
+    math_expression                shift and go to state 15
+    term                           shift and go to state 3
+
+state 12
+
+    (4) math_expression -> math_expression TIMES LPARENT . math_expression RPARENT
+    (2) math_expression -> . math_expression PLUS LPARENT math_expression RPARENT
+    (3) math_expression -> . math_expression MINUS LPARENT math_expression RPARENT
+    (4) math_expression -> . math_expression TIMES LPARENT math_expression RPARENT
+    (5) math_expression -> . math_expression DIVIDE LPARENT math_expression RPARENT
+    (6) math_expression -> . term
+    (7) term -> . NUMBER
+
+    NUMBER          shift and go to state 4
+
+    math_expression                shift and go to state 16
+    term                           shift and go to state 3
+
+state 13
+
+    (5) math_expression -> math_expression DIVIDE LPARENT . math_expression RPARENT
+    (2) math_expression -> . math_expression PLUS LPARENT math_expression RPARENT
+    (3) math_expression -> . math_expression MINUS LPARENT math_expression RPARENT
+    (4) math_expression -> . math_expression TIMES LPARENT math_expression RPARENT
+    (5) math_expression -> . math_expression DIVIDE LPARENT math_expression RPARENT
+    (6) math_expression -> . term
+    (7) term -> . NUMBER
+
+    NUMBER          shift and go to state 4
+
+    math_expression                shift and go to state 17
+    term                           shift and go to state 3
+
+state 14
+
+    (2) math_expression -> math_expression PLUS LPARENT math_expression . RPARENT
+    (2) math_expression -> math_expression . PLUS LPARENT math_expression RPARENT
+    (3) math_expression -> math_expression . MINUS LPARENT math_expression RPARENT
+    (4) math_expression -> math_expression . TIMES LPARENT math_expression RPARENT
+    (5) math_expression -> math_expression . DIVIDE LPARENT math_expression RPARENT
+
+    RPARENT         shift and go to state 18
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    TIMES           shift and go to state 8
+    DIVIDE          shift and go to state 9
+
+
+state 15
+
+    (3) math_expression -> math_expression MINUS LPARENT math_expression . RPARENT
+    (2) math_expression -> math_expression . PLUS LPARENT math_expression RPARENT
+    (3) math_expression -> math_expression . MINUS LPARENT math_expression RPARENT
+    (4) math_expression -> math_expression . TIMES LPARENT math_expression RPARENT
+    (5) math_expression -> math_expression . DIVIDE LPARENT math_expression RPARENT
+
+    RPARENT         shift and go to state 19
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    TIMES           shift and go to state 8
+    DIVIDE          shift and go to state 9
+
+
+state 16
+
+    (4) math_expression -> math_expression TIMES LPARENT math_expression . RPARENT
+    (2) math_expression -> math_expression . PLUS LPARENT math_expression RPARENT
+    (3) math_expression -> math_expression . MINUS LPARENT math_expression RPARENT
+    (4) math_expression -> math_expression . TIMES LPARENT math_expression RPARENT
+    (5) math_expression -> math_expression . DIVIDE LPARENT math_expression RPARENT
+
+    RPARENT         shift and go to state 20
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    TIMES           shift and go to state 8
+    DIVIDE          shift and go to state 9
+
+
+state 17
+
+    (5) math_expression -> math_expression DIVIDE LPARENT math_expression . RPARENT
+    (2) math_expression -> math_expression . PLUS LPARENT math_expression RPARENT
+    (3) math_expression -> math_expression . MINUS LPARENT math_expression RPARENT
+    (4) math_expression -> math_expression . TIMES LPARENT math_expression RPARENT
+    (5) math_expression -> math_expression . DIVIDE LPARENT math_expression RPARENT
+
+    RPARENT         shift and go to state 21
+    PLUS            shift and go to state 6
+    MINUS           shift and go to state 7
+    TIMES           shift and go to state 8
+    DIVIDE          shift and go to state 9
+
+
+state 18
+
+    (2) math_expression -> math_expression PLUS LPARENT math_expression RPARENT .
+
+    SEMICOL         reduce using rule 2 (math_expression -> math_expression PLUS LPARENT math_expression RPARENT .)
+    PLUS            reduce using rule 2 (math_expression -> math_expression PLUS LPARENT math_expression RPARENT .)
+    MINUS           reduce using rule 2 (math_expression -> math_expression PLUS LPARENT math_expression RPARENT .)
+    TIMES           reduce using rule 2 (math_expression -> math_expression PLUS LPARENT math_expression RPARENT .)
+    DIVIDE          reduce using rule 2 (math_expression -> math_expression PLUS LPARENT math_expression RPARENT .)
+    RPARENT         reduce using rule 2 (math_expression -> math_expression PLUS LPARENT math_expression RPARENT .)
+
+
+state 19
+
+    (3) math_expression -> math_expression MINUS LPARENT math_expression RPARENT .
+
+    SEMICOL         reduce using rule 3 (math_expression -> math_expression MINUS LPARENT math_expression RPARENT .)
+    PLUS            reduce using rule 3 (math_expression -> math_expression MINUS LPARENT math_expression RPARENT .)
+    MINUS           reduce using rule 3 (math_expression -> math_expression MINUS LPARENT math_expression RPARENT .)
+    TIMES           reduce using rule 3 (math_expression -> math_expression MINUS LPARENT math_expression RPARENT .)
+    DIVIDE          reduce using rule 3 (math_expression -> math_expression MINUS LPARENT math_expression RPARENT .)
+    RPARENT         reduce using rule 3 (math_expression -> math_expression MINUS LPARENT math_expression RPARENT .)
+
+
+state 20
+
+    (4) math_expression -> math_expression TIMES LPARENT math_expression RPARENT .
+
+    SEMICOL         reduce using rule 4 (math_expression -> math_expression TIMES LPARENT math_expression RPARENT .)
+    PLUS            reduce using rule 4 (math_expression -> math_expression TIMES LPARENT math_expression RPARENT .)
+    MINUS           reduce using rule 4 (math_expression -> math_expression TIMES LPARENT math_expression RPARENT .)
+    TIMES           reduce using rule 4 (math_expression -> math_expression TIMES LPARENT math_expression RPARENT .)
+    DIVIDE          reduce using rule 4 (math_expression -> math_expression TIMES LPARENT math_expression RPARENT .)
+    RPARENT         reduce using rule 4 (math_expression -> math_expression TIMES LPARENT math_expression RPARENT .)
+
+
+state 21
+
+    (5) math_expression -> math_expression DIVIDE LPARENT math_expression RPARENT .
+
+    SEMICOL         reduce using rule 5 (math_expression -> math_expression DIVIDE LPARENT math_expression RPARENT .)
+    PLUS            reduce using rule 5 (math_expression -> math_expression DIVIDE LPARENT math_expression RPARENT .)
+    MINUS           reduce using rule 5 (math_expression -> math_expression DIVIDE LPARENT math_expression RPARENT .)
+    TIMES           reduce using rule 5 (math_expression -> math_expression DIVIDE LPARENT math_expression RPARENT .)
+    DIVIDE          reduce using rule 5 (math_expression -> math_expression DIVIDE LPARENT math_expression RPARENT .)
+    RPARENT         reduce using rule 5 (math_expression -> math_expression DIVIDE LPARENT math_expression RPARENT .)
+
